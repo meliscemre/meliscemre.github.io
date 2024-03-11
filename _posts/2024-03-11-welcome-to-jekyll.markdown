@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome! Hoşgeldin! Bienvenue! Willkommen! Bienvenida!"
+title:  "Welcome! Hoş geldin! Bienvenue! Willkommen! Bienvenida!"
 date:   2024-03-11 18:11:19 +0100
 categories: jekyll update
 ---
