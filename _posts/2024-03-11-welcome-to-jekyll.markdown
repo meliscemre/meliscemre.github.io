@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome! Hoşgeldin! Bienvenue! Willkommen! Bienvenida!"
+text:  "Are you ready to dive into data? (Yesss!!!)"
 date:   2024-03-11 18:11:19 +0100
 categories: jekyll update
 ---
