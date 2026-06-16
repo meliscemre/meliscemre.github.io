@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melis Cemre Akyol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cream: #f5efe6;
+            --card: #fdf6ee;
+            --bordo: #7a1f1f;
+            --bordo-dark: #5a0f0f;
+            --bordo-light: #a84444;
+            --text: #2d2020;
+            --text-muted: #6b4f4f;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 80px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 36px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--bordo);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        nav a:hover { opacity: 1; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 120px 80px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 88px;
+            font-weight: 700;
+            color: var(--bordo);
+            line-height: 1.05;
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+        .hero .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 64px;
+        }
+        .cta-bar {
+            background: linear-gradient(135deg, var(--bordo), var(--bordo-dark));
+            border-radius: 20px;
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 680px;
+        }
+        .cta-bar span {
+            color: rgba(255,255,255,0.9);
+            font-size: 18px;
+            font-weight: 300;
+        }
+        .cta-bar a {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.7);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .cta-bar a:hover { background: rgba(255,255,255,0.15); }
+
+        /* SECTIONS */
+        .section { padding: 80px 120px; }
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--bordo-light);
+            margin-bottom: 48px;
+        }
+
+        /* EDUCATION */
+        .edu-card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            margin-bottom: 24px;
+        }
+        .edu-card-text { flex: 1; }
+        .edu-card-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--bordo);
+            margin-bottom: 16px;
+        }
+        .edu-card-text p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+        .edu-card-text .project-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--bordo);
+            margin-bottom: 6px;
+        }
+        .edu-card img {
+            width: 260px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        /* EXPERIENCE */
+        .exp-item {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        .exp-left h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--bordo);
+            margin-bottom: 6px;
+        }
+        .exp-left .company {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .exp-left ul { list-style: none; padding: 0; }
+        .exp-left ul li {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+            padding-left: 16px;
+            position: relative;
+        }
+        .exp-left ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--bordo-light);
+        }
+        .exp-date {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--bordo-light);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .skills-box {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 36px 40px;
+        }
+        .skills-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--bordo);
+            margin-bottom: 20px;
+        }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag {
+            background: var(--cream);
+            border: 1px solid rgba(122,31,31,0.2);
+            color: var(--bordo);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .project-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 28px 32px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(122,31,31,0.12);
+        }
+        .project-card .ptag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bordo-light);
+            margin-bottom: 12px;
+        }
+        .project-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--bordo);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .project-card p {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(45,32,32,0.55);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 24px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--bordo-light);
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bordo-light);
+            margin-bottom: 12px;
+        }
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--bordo);
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+        .modal-row { margin-bottom: 18px; }
+        .modal-row strong {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--bordo);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .modal-row p, .modal-row ul {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .modal-row ul { list-style: none; padding: 0; }
+        .modal-row ul li { padding-left: 14px; position: relative; }
+        .modal-row ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--bordo-light);
+        }
+        .modal-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .modal-tool {
+            background: var(--cream);
+            border: 1px solid rgba(122,31,31,0.2);
+            color: var(--bordo);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+
+        /* VOLUNTEERING */
+        .vol-card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        .vol-card img {
+            width: 320px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+        .vol-card-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--bordo);
+            margin-bottom: 20px;
+        }
+        .vol-item { margin-bottom: 18px; }
+        .vol-item strong {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bordo);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .vol-item p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* HOBBIES */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .hobby-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .hobby-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .hobby-label {
+            padding: 14px 18px;
+        }
+        .hobby-label h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            color: var(--bordo);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(122,31,31,0.15);
+        }
+        footer .footer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--bordo);
+        }
+        footer .footer-links { display: flex; gap: 24px; }
+        footer .footer-links a {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer .footer-links a:hover { color: var(--bordo); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Melis Cemre<br>Akyol</h1>
+    <p class="tagline">There's always a better way.<br>I prove it.</p>
+    <div class="cta-bar">
+        <span>Let me introduce myself.</span>
+        <a href="#education">Yes →</a>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-card">
+        <div class="edu-card-text">
+            <h2>MSc Business Analytics — DTU</h2>
+            <p>I completed my MSc in Business Analytics at the Technical University of Denmark in 2025, with a full tuition scholarship awarded on academic merit.</p>
+            <p class="project-label">Master's Thesis</p>
+            <p>Joint Rebalancing and Dynamic Pricing Policies with MARL for Mobility-on-Demand Systems</p>
+        </div>
+        <img src="dtu.jpg" alt="DTU Graduation">
+    </div>
+    <div class="edu-card">
+        <div class="edu-card-text">
+            <h2>BS Industrial Engineering — METU</h2>
+            <p>I completed my BSc in Industrial Engineering at the Middle East Technical University, admitted with a first-place departmental ranking.</p>
+            <p class="project-label">Graduation Project</p>
+            <p>Lubricant Supply Chain Optimization with Petrol Ofisi, achieving a 25% cost reduction and 13% improvement in on-time delivery.</p>
+        </div>
+        <img src="metu.jpg" alt="METU Graduation">
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+    <p class="section-label">Experience</p>
+    <div class="exp-item">
+        <div class="exp-left">
+            <h3>Project Student</h3>
+            <p class="company">Petrol Ofisi</p>
+            <ul>
+                <li>Designed and implemented a decision support system for operational logistics and distribution planning at Petrol Ofisi's lubricant supply chain</li>
+                <li>Achieved a 25% reduction in costs and a 13% improvement in on-time delivery rates</li>
+            </ul>
+        </div>
+        <span class="exp-date">Sept 2022 — July 2023</span>
+    </div>
+    <div class="exp-item">
+        <div class="exp-left">
+            <h3>Continuous Improvement Intern</h3>
+            <p class="company">Turkish Aerospace</p>
+            <ul>
+                <li>Took part in Kaizen applications and 5S supervisions</li>
+                <li>Conducted single-minute exchange of die (SMED) study</li>
+                <li>Prepared Lean Production and Kaizen presentations</li>
+            </ul>
+        </div>
+        <span class="exp-date">July 2022 — Aug 2022</span>
+    </div>
+    <div class="exp-item">
+        <div class="exp-left">
+            <h3>Production Intern</h3>
+            <p class="company">Perge Paper Packaging</p>
+            <ul>
+                <li>Calculated machine efficiency through analysis of waste and downtime</li>
+            </ul>
+        </div>
+        <span class="exp-date">Aug 2021</span>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+    <p class="section-label">Skills & Tools</p>
+    <div class="skills-grid">
+        <div class="skills-box">
+            <h3>Skills</h3>
+            <div class="tag-list">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Operations Research</span>
+                <span class="tag">Advanced Statistics</span>
+                <span class="tag">Simulation</span>
+                <span class="tag">Supply Chain Planning</span>
+                <span class="tag">Data Visualisation</span>
+                <span class="tag">Decision Making under Uncertainty</span>
+                <span class="tag">Financial Evaluation</span>
+                <span class="tag">Economic Modeling</span>
+                <span class="tag">Sustainable Systems Engineering</span>
+            </div>
+        </div>
+        <div class="skills-box">
+            <h3>Tools</h3>
+            <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Power BI</span>
+                <span class="tag">Microsoft Excel</span>
+                <span class="tag">Excel Solver</span>
+                <span class="tag">Julia</span>
+                <span class="tag">GAMS</span>
+                <span class="tag">Arena</span>
+                <span class="tag">Minitab</span>
+                <span class="tag">Git</span>
+                <span class="tag">Microsoft PowerPoint</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+    <p class="section-label">Projects & Case Studies</p>
+    <div class="projects-grid">
+
+        <div class="project-card" onclick="openModal('marl')">
+            <p class="ptag">Reinforcement Learning</p>
+            <h3>Joint Rebalancing and Dynamic Pricing with MARL</h3>
+            <p>Multi-agent RL for simultaneous vehicle rebalancing and dynamic pricing in autonomous mobility systems.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('petrol')">
+            <p class="ptag">Supply Chain · MILP</p>
+            <h3>Lubricants Distribution Optimization</h3>
+            <p>Decision support system for Petrol Ofisi's lubricant supply chain, achieving a 25% cost reduction.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('pneumonia')">
+            <p class="ptag">Deep Learning</p>
+            <h3>Pneumonia Detection in Pediatric Chest X-Rays</h3>
+            <p>Transfer learning applied to medical image classification for early pneumonia diagnosis.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('fakenews')">
+            <p class="ptag">NLP · Classification</p>
+            <h3>Fake News Detection Using Machine Learning</h3>
+            <p>NLP pipeline using web scraping and ML algorithms to identify fake news content.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('transport')">
+            <p class="ptag">Transportation Analysis</p>
+            <h3>Transport System Analysis</h3>
+            <p>Modeling and predicting travel patterns to evaluate policy impacts on urban mobility.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('diabetes')">
+            <p class="ptag">Bayesian ML</p>
+            <h3>Diabetes Risk Prediction</h3>
+            <p>Bayesian logistic regression and probabilistic graphical models for diabetes risk prediction.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('warehouse')">
+            <p class="ptag">Stochastic Optimization</p>
+            <h3>Warehouse Distribution under Uncertainty</h3>
+            <p>Two-stage and multi-stage stochastic programming for coffee distribution planning.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('abalone')">
+            <p class="ptag">EDA · Dimensionality Reduction</p>
+            <h3>Predicting Abalone Age from Shell Measurements</h3>
+            <p>PCA and exploratory data analysis to prepare features for age prediction.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('hospital')">
+            <p class="ptag">Simulation</p>
+            <h3>Hospital Bed Allocation Simulation</h3>
+            <p>Discrete-event simulation for hospital bed resource planning during an epidemic.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('medical')">
+            <p class="ptag">Linear Programming</p>
+            <h3>Multi-Period Planning for Medical Equipment Production</h3>
+            <p>Production planning model to supply ventilators to hospitals under COVID-19 demand.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('modelcar')">
+            <p class="ptag">Multi-Objective Optimization</p>
+            <h3>Model Car Production Planning</h3>
+            <p>Goal programming for annual production planning across 6 car classes and 7 processes.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('icecream')">
+            <p class="ptag">MILP · Forecasting</p>
+            <h3>Ice Cream Factory Network Design & Demand Forecasting</h3>
+            <p>Optimal factory location planning and time-series demand forecasting for expansion.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('freight')">
+            <p class="ptag">Integer Programming</p>
+            <h3>Freight Train Scheduling on Shared Tracks</h3>
+            <p>Network flow optimization to maximize freight trains scheduled without delaying passengers.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('task')">
+            <p class="ptag">Resource Allocation</p>
+            <h3>Skill-Based Task Assignment & Team Scheduling</h3>
+            <p>Integer programming for assigning engineers to prioritized tasks based on skill profiles.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('emergency')">
+            <p class="ptag">Markov Chain</p>
+            <h3>Emergency Department Resource Modeling</h3>
+            <p>Markov chain model for patient flow management under limited physician and room capacity.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('shopping')">
+            <p class="ptag">Simulation</p>
+            <h3>Online Shopping Simulation</h3>
+            <p>Discrete-event simulation for a fashion e-commerce platform to reduce fulfillment delays.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('porcelain')">
+            <p class="ptag">Quality Control</p>
+            <h3>Quality Control in Porcelain Production</h3>
+            <p>Statistical process control to monitor and improve pattern centering variability.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('coffeeshop')">
+            <p class="ptag">Quality Control</p>
+            <h3>Quality Performance Analysis in a Coffee Shop</h3>
+            <p>Process capability and sigma level analysis to evaluate drink preparation consistency.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('qfd')">
+            <p class="ptag">Decision Making</p>
+            <h3>Quality Function Deployment (QFD)</h3>
+            <p>AHP and House of Quality to align sneaker product design with customer expectations.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('kite')">
+            <p class="ptag">Robust Design</p>
+            <h3>Robust Design of Paper Kites</h3>
+            <p>Taguchi design and ANOVA to identify the most robust kite design across weather conditions.</p>
+        </div>
+
+        <div class="project-card" onclick="openModal('cinema')">
+            <p class="ptag">Network Analysis · NLP</p>
+            <h3>Cinematic Networks: Sentiment & Genre Analysis</h3>
+            <p>Social network analysis and sentiment arc clustering on large-scale movie dialogue data.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- VOLUNTEERING -->
+<section class="section" id="volunteering">
+    <p class="section-label">Volunteering</p>
+    <div class="vol-card">
+        <img src="volunteering.jpg" alt="Volunteering">
+        <div class="vol-card-text">
+            <h2>Volunteering</h2>
+            <div class="vol-item">
+                <strong>Copenhagen International Documentary Film Festival (CPH:DOX)</strong>
+                <p>Volunteered at one of Europe's leading documentary film festivals.</p>
+            </div>
+            <div class="vol-item">
+                <strong>The European Conference on Operational Research (EURO)</strong>
+                <p>Supported one of the largest OR conferences in the world.</p>
+            </div>
+            <div class="vol-item">
+                <strong>Turkish Foundation for Combating Soil Erosion (TEMA)</strong>
+                <p>Environmental volunteering focused on sustainable land use.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO I ACTUALLY AM -->
+<section class="section" id="about">
+    <p class="section-label">Who I Actually Am</p>
+    <div class="hobbies-grid">
+        <div class="hobby-card">
+            <img src="cooking.jpg" alt="Cooking">
+            <div class="hobby-label"><h3>Cooking</h3></div>
+        </div>
+        <div class="hobby-card">
+            <img src="crochet.jpg" alt="Crochet">
+            <div class="hobby-label"><h3>Crochet</h3></div>
+        </div>
+        <div class="hobby-card">
+            <img src="boardgames.jpg" alt="Board Games">
+            <div class="hobby-label"><h3>Board Games</h3></div>
+        </div>
+        <div class="hobby-card">
+            <img src="traveling.jpg" alt="Traveling">
+            <div class="hobby-label"><h3>Traveling</h3></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span class="footer-name">Melis Cemre Akyol</span>
+    <div class="footer-links">
+        <a href="mailto:meliscemrea@gmail.com">meliscemrea@gmail.com</a>
+        <a href="https://linkedin.com/in/meliscemreakyol" target="_blank">LinkedIn</a>
+    </div>
+</footer>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modalContent">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <p class="modal-tag" id="mTag"></p>
+        <h2 id="mTitle"></h2>
+        <div id="mBody"></div>
+    </div>
+</div>
+
+<script>
+const projects = {
+    marl: {
+        tag: "Reinforcement Learning",
+        title: "Joint Rebalancing and Dynamic Pricing Policies with MARL for Mobility-on-Demand Systems",
+        duration: "~ 6 months",
+        goal: "Developing a multi-agent reinforcement learning framework to jointly optimize vehicle rebalancing and dynamic pricing in a competitive Autonomous Mobility-on-Demand (AMoD) environment.",
+        approach: ["Implementing Soft Actor-Critic (SAC) agents using Graph Neural Networks (GNNs)", "Utility-based passenger choice model"],
+        tools: ["Python"],
+        skills: ["Multi-agent reinforcement learning (MARL)", "SAC", "GNNs", "Choice models", "Simulation"]
+    },
+    petrol: {
+        tag: "Supply Chain · MILP",
+        title: "Lubricants Distribution Optimization — in collaboration with Petrol Ofisi",
+        duration: "~ 10 months",
+        goal: "Designing a cost-effective depot and delivery system to minimize transportation and holding costs while ensuring at least 84% on-time delivery.",
+        approach: ["Mixed-Integer Linear Programming (MILP)"],
+        tools: ["GAMS"],
+        skills: ["Logistics & Supply Chain Planning", "Scheduling & Vehicle Routing", "Inventory Management", "Optimization & Resource Allocation"],
+        outcome: "25% reduction in delivery costs, 13% improvement in on-time delivery rates."
+    },
+    pneumonia: {
+        tag: "Deep Learning",
+        title: "Pneumonia Detection in Pediatric Chest X-Rays Using Transfer Learning",
+        goal: "Developing deep learning models for binary classification of pediatric chest X-ray images into pneumonia and normal classes.",
+        approach: ["Transfer learning with pre-trained models"],
+        tools: ["Python"],
+        skills: ["Image classification", "Transfer learning", "Convolutional neural networks", "Data augmentation"]
+    },
+    fakenews: {
+        tag: "NLP · Classification",
+        title: "Fake News Detection Using Machine Learning",
+        goal: "Detecting and reducing the impact of fake or misleading online news content.",
+        approach: ["Machine learning algorithms to identify fake news", "Web scraping", "Natural language processing (NLP)"],
+        tools: ["Python"],
+        skills: ["Web Scraping & Data Collection", "Text Mining and NLP", "Classification"]
+    },
+    transport: {
+        tag: "Transportation Analysis",
+        title: "Transport System Analysis",
+        goal: "Modeling and predicting travel patterns, evaluating policy impacts (e.g., pricing strategies, public transport improvements, speed limits), and optimizing urban mobility while minimizing fatalities and maximizing social welfare.",
+        approach: ["Regression analysis and elasticity calculations (Linear, Poisson, and Logistic regression)", "Iterative Proportional Fitting for OD-matrix calibration", "Utility-based modal and destination choice modelling", "Gravity modeling and cross-classification methods", "Cost-benefit analysis"],
+        tools: ["Excel Data Analysis"],
+        skills: ["Transportation System Optimization", "Socioeconomic & Behavioral Analysis in Urban Mobility"]
+    },
+    diabetes: {
+        tag: "Bayesian ML",
+        title: "Diabetes Risk Prediction Using Model-Based Machine Learning",
+        goal: "Predicting diabetes risk based on health and lifestyle features.",
+        approach: ["Bayesian Logistic Regression and Probabilistic Graphical Models (PGMs)"],
+        tools: ["Python"],
+        skills: ["Bayesian Machine Learning", "Probabilistic Graphical Modeling", "Hierarchical Modeling"]
+    },
+    warehouse: {
+        tag: "Stochastic Optimization",
+        title: "Stochastic & Robust Optimization for Warehouse Distribution",
+        goal: "Minimizing total costs while ensuring demand satisfaction under uncertainty across 3 warehouses.",
+        approach: ["Two-stage and multi-stage stochastic programming", "Robust optimization"],
+        tools: ["Julia"],
+        skills: ["Stochastic & Robust Optimization", "Multi-stage Policy Design"]
+    },
+    abalone: {
+        tag: "EDA · Dimensionality Reduction",
+        title: "Predicting Abalone Age from Shell Measurements",
+        goal: "Exploring the use of machine learning techniques to analyze physical features of abalones and prepare the data for age prediction by reducing dimensionality.",
+        approach: ["Exploratory Data Analysis (EDA)", "Principal Component Analysis (PCA)"],
+        tools: ["Python"],
+        skills: ["Dimensionality reduction", "Visual data analysis"]
+    },
+    hospital: {
+        tag: "Simulation",
+        title: "Hospital Bed Allocation Simulation",
+        goal: "Allocating hospital beds to minimize patient rejection during an epidemic.",
+        approach: ["Discrete-event simulation", "Sensitivity analysis on bed distribution and length-of-stay distributions"],
+        tools: ["Python"],
+        skills: ["Queueing Systems", "Discrete-Event Simulation", "Sensitivity Analysis"]
+    },
+    medical: {
+        tag: "Linear Programming",
+        title: "Multi-Period Planning for Medical Equipment Production",
+        goal: "Minimizing total production, labour, inventory, and subcontracting costs while meeting monthly hospital demand for non-invasive ventilators.",
+        approach: ["Linear Programming"],
+        tools: ["Excel Solver"],
+        skills: ["Production Scheduling", "Workforce Planning", "Inventory and Backorder Management"]
+    },
+    modelcar: {
+        tag: "Multi-Objective Optimization",
+        title: "Model Car Production Planning Problem",
+        goal: "Maximizing total profit while minimizing production waste, under capacity and revenue constraints for 6 model car classes.",
+        approach: ["Multi-Objective Optimization & Goal Programming"],
+        tools: ["GAMS"],
+        skills: ["Multi-Objective Decision Making", "Production Line Capacity Planning", "Goal-Based Optimization"]
+    },
+    icecream: {
+        tag: "MILP · Forecasting",
+        title: "Ice Cream Factory Network Design & Demand Forecasting",
+        goal: "Determining optimal factory locations and quarterly production-distribution plans for the next 5 years, and selecting appropriate forecasting models for regional and aggregate demand.",
+        approach: ["Multi-period mixed-integer linear programming", "Testing multiple time-series forecasting models"],
+        tools: ["GAMS", "Excel"],
+        skills: ["Facility Location Planning", "Multi-Period Production Planning", "Transportation & Inventory Cost Optimization", "Time-Series Forecasting", "Error Metric Interpretation (MSE, MAPE)"]
+    },
+    freight: {
+        tag: "Integer Programming",
+        title: "Freight Train Scheduling on Shared Tracks",
+        goal: "Maximizing the number of freight trains that can be scheduled during a 3-hour rush period without delaying passenger trains.",
+        approach: ["Network Flow Optimization using Integer Programming"],
+        tools: ["Excel Solver"],
+        skills: ["Railway Scheduling & Capacity Planning", "Network Flow Optimization"]
+    },
+    task: {
+        tag: "Resource Allocation",
+        title: "Skill-Based Task Assignment & Team Scheduling",
+        goal: "Assigning 10 engineers to complete 20 tasks over multiple days based on skill profiles, while minimizing weighted completion times by task priority.",
+        approach: ["Integer Programming"],
+        tools: ["Excel Solver"],
+        skills: ["Team Formation & Scheduling", "Skill Matching & Resource Allocation", "Multi-Objective Optimization"]
+    },
+    emergency: {
+        tag: "Markov Chain",
+        title: "Emergency Department Resource Modeling",
+        goal: "Evaluating system performance and resource utilization while minimizing costs and maximizing reimbursement under uncertainty in patient arrivals and treatment outcomes.",
+        approach: ["Markov Chain modeling for red, yellow, and green patient cases"],
+        tools: ["Excel"],
+        skills: ["Markov Chain Modeling", "Stochastic Process Simulation"]
+    },
+    shopping: {
+        tag: "Simulation",
+        title: "Online Shopping Simulation",
+        goal: "Ensuring average order fulfillment within 4 days and reducing late-delivery return rate to below 1%, while minimizing resource and inventory usage.",
+        approach: ["Discrete-event simulation model", "Statistical output analysis"],
+        tools: ["Arena (SIMAN)"],
+        skills: ["Discrete-event simulation", "Inventory and resource planning"]
+    },
+    porcelain: {
+        tag: "Quality Control",
+        title: "Quality Control in Porcelain Production",
+        goal: "Monitoring and improving pattern centering by identifying process instability and reducing variability.",
+        approach: ["Statistical Process Control (SPC)"],
+        tools: ["Minitab"],
+        skills: ["Control Chart Analysis", "Process Capability Analysis"]
+    },
+    coffeeshop: {
+        tag: "Quality Control",
+        title: "Quality Performance Analysis in a Coffee Shop",
+        goal: "Evaluating the drink preparation process and identifying areas for improvement based on quality metrics.",
+        approach: ["FTY, RTY, DPU, NY, DPO, DPMO metrics", "Process capability and sigma level analysis"],
+        tools: ["RStudio", "Excel"],
+        skills: ["Quality control", "Statistical process control", "Capability analysis"]
+    },
+    qfd: {
+        tag: "Decision Making",
+        title: "Quality Function Deployment (QFD) for Sneaker Brand",
+        goal: "Prioritizing customer needs and matching them to technical features to align product design with customer expectations.",
+        approach: ["Customer surveys and Analytic Hierarchy Process (AHP)", "House of Quality (HoQ)"],
+        tools: ["Excel"],
+        skills: ["AHP", "QFD"]
+    },
+    kite: {
+        tag: "Robust Design",
+        title: "Robust Design of Paper Kites",
+        goal: "Identifying the most robust kite design using experimental design methods to improve flight time consistency across weather and user conditions.",
+        approach: ["Taguchi L4(2³) orthogonal array experiments", "Signal-to-noise ratios (SNR)", "Analysis of Variance (ANOVA)"],
+        tools: ["Minitab"],
+        skills: ["Taguchi design", "Robust optimization"]
+    },
+    cinema: {
+        tag: "Network Analysis · NLP",
+        title: "Cinematic Networks: Sentiment, Temporal Dynamics, and Genre-Based Difference",
+        goal: "Analyzing how structural complexity, sentiment arcs, and genre structures influence cinematic storytelling and audience ratings.",
+        approach: ["Social network analysis", "Sentiment arc clustering", "TF-IDF on movie dialogues"],
+        tools: ["Python"],
+        skills: ["Social network analysis", "Sentiment analysis", "TF-IDF"]
+    }
+};
+
+function openModal(key) {
+    const p = projects[key];
+    document.getElementById('mTag').textContent = p.tag;
+    document.getElementById('mTitle').textContent = p.title;
+
+    let html = '';
+    if (p.duration) html += `<div class="modal-row"><strong>Duration</strong><p>${p.duration}</p></div>`;
+    if (p.outcome) html += `<div class="modal-row"><strong>Outcome</strong><p>${p.outcome}</p></div>`;
+    html += `<div class="modal-row"><strong>Goal</strong><p>${p.goal}</p></div>`;
+    html += `<div class="modal-row"><strong>Approach</strong><ul>${p.approach.map(a => `<li>${a}</li>`).join('')}</ul></div>`;
+    html += `<div class="modal-row"><strong>Tools</strong><div class="modal-tools">${p.tools.map(t => `<span class="modal-tool">${t}</span>`).join('')}</div></div>`;
+    html += `<div class="modal-row"><strong>Skills & Techniques</strong><ul>${p.skills.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
+
+    document.getElementById('mBody').innerHTML = html;
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
